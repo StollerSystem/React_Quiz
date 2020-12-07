@@ -11,6 +11,7 @@ export default (state = {}, action) => {
   //   const updatedState = Object.assign({}, state, {
   //   });
     // return updatedState;
+
   default:
     return state;
   }

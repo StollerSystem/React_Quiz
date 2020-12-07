@@ -11,6 +11,7 @@ function QuizList(props){
 
   
   const quizzes = useSelector(state => state.firestore.quizzes);
+  
   if (isLoaded(quizzes)) {
     return (
       <React.Fragment>
@@ -24,6 +25,12 @@ function QuizList(props){
         })}
       </React.Fragment>
     );
+  } else {
+    return(
+      <React.Fragment>
+        <h1>LOADING!</h1>
+      </React.Fragment>
+    )
   }
 }
 
