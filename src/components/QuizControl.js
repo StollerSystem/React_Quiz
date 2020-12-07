@@ -26,6 +26,7 @@ class QuizControl extends React.Component {
         editing: false
       });
     } else {
+      console.log("Handle click reached");
       const { dispatch } = this.props;
       const action = a.toggleForm();
       dispatch(action);

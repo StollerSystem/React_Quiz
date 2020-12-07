@@ -6,7 +6,9 @@ import { firestoreReducer } from 'redux-firestore';
 
 
 const rootReducer = combineReducers({
-  firestore: firestoreReducer
+  firestore: firestoreReducer,
+  masterQuizList: quizListReducer,
+  formVisibleOnPage: formVisibleReducer
 });
 
 
