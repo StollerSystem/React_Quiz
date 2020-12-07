@@ -1,7 +1,9 @@
 .center-align {
   text-align: center;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap');
 body {
-  font-family: 'Montserrat', sans-serif;
+  background-color: black;
+  color:whitesmoke;
+  font-family: 'Carrois Gothic SC', sans-serif;
 }

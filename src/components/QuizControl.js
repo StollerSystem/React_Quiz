@@ -2,6 +2,7 @@ import React from 'react';
 import NewQuizForm from './NewQuizForm';
 import QuizList from './QuizList';
 import TakeQuiz from './TakeQuiz';
+import EditQuizForm from './EditQuizForm';
 //import EditQuizForm from './EditQuizForm';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
@@ -38,8 +39,8 @@ class QuizControl extends React.Component {
   }
 
   handleChangingSelectedQuiz= (id) => {
-    this.props.firestore.get({collection: 'quizes', doc: id}).then((quiz) => {
-      const fireStoreQuiz = {
+    this.props.firestore.get({collection: 'quizzes', doc: id}).then((quiz) => {
+      const firestoreQuiz = {
         quizName: quiz.quizName.get('quizName'),
         questions: quiz.get('questions'),
         id: quiz.id
@@ -57,7 +58,7 @@ class QuizControl extends React.Component {
   }
 
 handleEditingQuizInList = (id) => {
-  this.props.firestore.delete({collection: 'quizes', doc: id});
+  this.props.firestore.delete({collection: 'quizzes', doc: id});
   this.setState({selectedQuiz: null});
 }
 

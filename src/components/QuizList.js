@@ -7,18 +7,18 @@ import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 function QuizList(props){
 
-  useFirestoreConnect([{collection: 'quizes'}]);
+  useFirestoreConnect([{collection: 'quizzes'}]);
 
   
-  const quizes = useSelector(state => state.firestore.quizes);
-  if (isLoaded(quizes)) {
+  const quizzes = useSelector(state => state.firestore.quizzes);
+  if (isLoaded(quizzes)) {
     return (
       <React.Fragment>
         <hr/>
-        {tickets.map((quiz) => {
+        {quizzes.map((quiz) => {
          return <Quiz
           whenQuizClicked = { props.onQuizSelection}
-          
+
 
          />         
         })}
