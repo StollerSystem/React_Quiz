@@ -31,5 +31,16 @@ body #root {
 
 h1{
   font-family: 'Bungee Shade', cursive;
+  color:#e63946;
+}
+
+canvas{
+  margin-left:5%;
+  margin-right:5%;
+}
+
+.displayfont{
+  font-family: 'Bungee Shade', cursive;
+  color:rgb(5, 5, 5);
 
 }
