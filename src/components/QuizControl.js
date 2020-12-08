@@ -41,7 +41,7 @@ class QuizControl extends React.Component {
 
 handleDeletingQuiz = (id) => {
   this.props.firestore.delete({collection: 'quizzes', doc: id});
-  this.setState({selectedQuiz: null});
+  this.setState({selectedQuiz: null, editing: false});
 }
 
   handleChangingSelectedQuiz= (id) => {
@@ -75,13 +75,16 @@ render() {
   let currentlyVisibleState = null;
   let buttonText = null;
   if (this.state.editing ) {      
-    currentlyVisibleState = <EditQuizForm quiz = {this.state.selectedQuiz} onEditQuiz = {this.handleEditingQuizInList} />
+    currentlyVisibleState = <EditQuizForm 
+    quiz = {this.state.selectedQuiz} 
+    onEditQuiz = {this.handleEditingQuizInList} 
+    onClickingDelete = {this.handleDeletingQuiz} 
+    />
     buttonText = "Return to Quiz List";
   } else if (this.state.selectedQuiz != null) {
     currentlyVisibleState = 
     <TakeQuiz 
-      quiz = {this.state.selectedQuiz} 
-      onClickingDelete = {this.handleDeletingQuiz} 
+      quiz = {this.state.selectedQuiz}      
       onClickingEdit = {this.handleEditClick} />
     buttonText = "Return to Quiz List";
   } else if (this.props.formVisibleOnPage) {

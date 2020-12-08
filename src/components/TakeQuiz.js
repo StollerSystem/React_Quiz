@@ -31,11 +31,11 @@ function TakeQuiz(props) {
         </Form.Group>
         <button className="btn btn-light btn-outline" type="submit">Submit answer!</button>
       </Form>
-      <br></br>
+      
       <button className="btn btn-light btn-outline" onClick={ props.onClickingEdit }>Edit This Quiz</button>
       {/* <button onClick={ props.onClickingDelete(quiz.id) }> Remove Quiz</button> */}
-      <br></br>
-      <br></br>
+      
+      
     </React.Fragment>
   );
 }

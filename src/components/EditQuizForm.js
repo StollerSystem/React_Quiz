@@ -1,10 +1,11 @@
 import React from 'react';
 import {useFirestore} from 'react-redux-firebase';
 import ReusableForm from './ReusableForm'
+import PropTypes from 'prop-types';
 
 function EditQuizForm(props){
   const firestore = useFirestore();
-  const { quiz } = props;
+  const { quiz, onClickingDelete } = props;
 
   function handleEditQuizSubmit(event){
     event.preventDefault();
@@ -19,9 +20,8 @@ function EditQuizForm(props){
   }
 
   return (
-    <div className="container">
-      <h2>UPDATE A QUIZ!</h2>      
       <React.Fragment>
+              <h2>UPDATE A QUIZ!</h2>      
         <ReusableForm 
         formSubmissionHandler={handleEditQuizSubmit}
         buttonText="UPDATE!"
@@ -30,10 +30,16 @@ function EditQuizForm(props){
         answer1Default={quiz.answers[0]}
         answer2Default={quiz.answers[1]}
         answer3Default={quiz.answers[2]}
-        ></ReusableForm>        
+        ></ReusableForm> 
+            <button onClick={() => onClickingDelete (quiz.id)} className='btn btn-danger'>DELETE QUIZ</button>
+            
+                                        
       </React.Fragment>
-    </div>
   )
+}
+
+EditQuizForm.propTypes = {
+  onClickingDelete: PropTypes.func
 }
 
 export default EditQuizForm;
