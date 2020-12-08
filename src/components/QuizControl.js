@@ -67,8 +67,8 @@ handleDeletingQuiz = (id) => {
   }
 
 handleEditingQuizInList = (id) => {
-  this.props.firestore.delete({collection: 'quizzes', doc: id});
-  this.setState({selectedQuiz: null});
+  this.setState({selectedQuiz: null,
+  editing: false});
 }
 
 render() {

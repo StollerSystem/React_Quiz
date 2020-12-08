@@ -14,7 +14,7 @@ function NewQuizForm(props) {
     props.onNewQuizCreation();    
     return firestore.collection('quizzes').add({
         name: event.target.name.value,
-        question: event.target.question1.value, 
+        question: event.target.question1.value+'?', 
         answers: [event.target.answer1.value, event.target.answer2.value, event.target.answer3.value], 
         correctAnswer: event.target.correctAnswer1.value})        
   }
