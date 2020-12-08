@@ -2,7 +2,6 @@
 import * as c from './../actions/ActionTypes';
 
 export default (state = {}, action) => {
-  const {formattedWaitTime} = action;
   switch (action.type) {
   case c.DELETE_QUIZ:
     const newState = { ...state };

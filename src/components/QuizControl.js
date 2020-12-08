@@ -39,11 +39,19 @@ class QuizControl extends React.Component {
     dispatch(action);
   }
 
+handleDeletingQuiz = (id) => {
+  this.props.firestore.delete({collection: 'quizzes', doc: id});
+  this.setState({selectedQuiz: null});
+}
+
   handleChangingSelectedQuiz= (id) => {
+    console.log("ID:" + id);
     this.props.firestore.get({collection: 'quizzes', doc: id}).then((quiz) => {
       const firestoreQuiz = {
-        quizName: quiz.quizName.get('quizName'),
-        questions: quiz.get('questions'),
+        name: quiz.get('name'),
+        question: quiz.get('question'),
+        answers: quiz.get('answers'),
+        correctAnswer: quiz.get('correctAnswer'),
         id: quiz.id
       }
       this.setState({

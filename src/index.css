@@ -4,11 +4,17 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap');
-body {
+/* #root{
   background-color: black;
   color:whitesmoke;
   font-family: 'Carrois Gothic SC', sans-serif;
-}
+} */
 button {
   padding-bottom:5%;
+}
+html {
+  background-color: black;
+  color:whitesmoke;
+  height:100%;
+  font-family: 'Carrois Gothic SC', sans-serif;
 }

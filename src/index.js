@@ -29,7 +29,7 @@ ReactDOM.render(
     <ReactReduxFirebaseProvider {...rrfProps}>
       <App />
     </ReactReduxFirebaseProvider>
-  </ Provider>,
+  </Provider>,
   document.getElementById('root')
 );
 

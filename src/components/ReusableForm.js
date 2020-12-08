@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import Form  from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -10,7 +10,9 @@ function ReusableForm(props) {
       <h3>A Question</h3>
       <Form onSubmit={props.formSubmissionHandler}>
         <Form.Group>
-          <Form.Control name="question1" size="lg" type="text" placeholder="Enter a question" />
+          <Form.Control name="name" size="lg" type="text" placeholder="Quiz name" />
+          <br />          
+          <Form.Control name="question1" size="md" type="text" placeholder="Enter a question" />
           <br />          
           <Form.Control name="answer1" size="sm" type="text" placeholder="Enter answer 1 here"  />            
           <Form.Check type="radio" aria-label="radio 1" name="correctAnswer1" value="1"/>                    

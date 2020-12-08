@@ -5,10 +5,12 @@ import QuizControl from './QuizControl'
 
 function App() {
   return (
-   <React.Fragment>
-     <Header />
-     <QuizControl />
-     </React.Fragment>
+    <React.Fragment>
+      <div className="container">
+      <Header />
+      <QuizControl />
+      </div>
+    </React.Fragment>
   );
 }
 
