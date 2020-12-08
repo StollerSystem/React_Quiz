@@ -3,16 +3,19 @@ import NewQuizForm from './NewQuizForm';
 import QuizList from './QuizList';
 import TakeQuiz from './TakeQuiz';
 import EditQuizForm from './EditQuizForm';
-//import EditQuizForm from './EditQuizForm';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as a from './../actions';
-import { withFirestore } from 'react-redux-firebase';
+import { withFirestore, isLoaded } from 'react-redux-firebase';
 
 class QuizControl extends React.Component {
 
   constructor(props) {
     super(props);
+    // this.props.firebase.auth().onAuthStateChanged(function(user) {
+    //   this.setState({ user: user });
+    // });
+
     this.state = {
       selectedQuiz: null,
       editing: false
@@ -39,14 +42,14 @@ class QuizControl extends React.Component {
     dispatch(action);
   }
 
-handleDeletingQuiz = (id) => {
-  this.props.firestore.delete({collection: 'quizzes', doc: id});
-  this.setState({selectedQuiz: null, editing: false});
-}
+  handleDeletingQuiz = (id) => {
+    this.props.firestore.delete({ collection: 'quizzes', doc: id });
+    this.setState({ selectedQuiz: null, editing: false });
+  }
 
-  handleChangingSelectedQuiz= (id) => {
+  handleChangingSelectedQuiz = (id) => {
     console.log("ID:" + id);
-    this.props.firestore.get({collection: 'quizzes', doc: id}).then((quiz) => {
+    this.props.firestore.get({ collection: 'quizzes', doc: id }).then((quiz) => {
       const firestoreQuiz = {
         name: quiz.get('name'),
         question: quiz.get('question'),
@@ -55,7 +58,7 @@ handleDeletingQuiz = (id) => {
         id: quiz.id
       }
       this.setState({
-        selectedQuiz: firestoreQuiz 
+        selectedQuiz: firestoreQuiz
       });
     });
   }
@@ -66,42 +69,62 @@ handleDeletingQuiz = (id) => {
     });
   }
 
-handleEditingQuizInList = (id) => {
-  this.setState({selectedQuiz: null,
-  editing: false});
+  handleEditingQuizInList = (id) => {
+    this.setState({
+      selectedQuiz: null,
+      editing: false
+    });
+  }
+
+  render() {
+    const auth = this.props.firebase.auth();
+    if (!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading...</h1>
+        </React.Fragment>
+      )
+    }
+    if ((isLoaded(auth)) && (auth.currentUser == null)) {
+      return (
+        <React.Fragment>
+          <h1>You must be signed in to party.</h1>
+        </React.Fragment>
+      )
+    }
+    if ((isLoaded(auth)) && (auth.currentUser != null)) {
+      let currentlyVisibleState = null;
+      let buttonText = null;
+      if (this.state.editing) {
+        currentlyVisibleState = <EditQuizForm
+          quiz={this.state.selectedQuiz}
+          onEditQuiz={this.handleEditingQuizInList}
+          onClickingDelete={this.handleDeletingQuiz}
+        />
+        buttonText = "Return to Quiz List";
+      } else if (this.state.selectedQuiz != null) {
+        currentlyVisibleState =
+          <TakeQuiz
+            quiz={this.state.selectedQuiz}
+            onClickingEdit={this.handleEditClick} />
+        buttonText = "Return to Quiz List";
+      } else if (this.props.formVisibleOnPage) {
+        currentlyVisibleState = <NewQuizForm onNewQuizCreation={this.handleAddingNewQuizToList} />;
+        buttonText = "Return to Quiz List";
+      } else {
+        currentlyVisibleState = <QuizList onQuizSelection={this.handleChangingSelectedQuiz} />;
+        buttonText = "Add A Quiz";
+      }
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+          <button className='btn btn-primary' onClick={this.handleClick}>{buttonText}</button>
+        </React.Fragment>
+      );
+    }
+  }
 }
 
-render() {
-  let currentlyVisibleState = null;
-  let buttonText = null;
-  if (this.state.editing ) {      
-    currentlyVisibleState = <EditQuizForm 
-    quiz = {this.state.selectedQuiz} 
-    onEditQuiz = {this.handleEditingQuizInList} 
-    onClickingDelete = {this.handleDeletingQuiz} 
-    />
-    buttonText = "Return to Quiz List";
-  } else if (this.state.selectedQuiz != null) {
-    currentlyVisibleState = 
-    <TakeQuiz 
-      quiz = {this.state.selectedQuiz}      
-      onClickingEdit = {this.handleEditClick} />
-    buttonText = "Return to Quiz List";
-  } else if (this.props.formVisibleOnPage) {
-    currentlyVisibleState = <NewQuizForm onNewQuizCreation={this.handleAddingNewQuizToList}  />;
-    buttonText = "Return to Quiz List";
-  } else {
-    currentlyVisibleState = <QuizList onQuizSelection={this.handleChangingSelectedQuiz} />;
-    buttonText = "Add A Quiz";
-  }
-  return (
-    <React.Fragment>
-      {currentlyVisibleState}
-      <button className='btn btn-primary' onClick={this.handleClick}>{buttonText}</button>
-    </React.Fragment>
-  );
-}
-}
 
 const mapStateToProps = state => {
   return {

@@ -19,8 +19,8 @@ function Signin(){
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-      console.log("successfully signed in!");
-    }).catch(function(error) {
+      console.log("Successfully signed in!");
+  }).catch(function(error) {
       console.log(error.message);
     });
   }
@@ -31,7 +31,7 @@ function Signin(){
     }).catch(function(error) {
       console.log(error.message);
     })
-  }
+  }  
 
   return(
     <React.Fragment>
@@ -60,8 +60,8 @@ function Signin(){
           name='signinPassword'
           placeholder='Password' />
         <button type='submit' className='btn btn-success'>Sign in</button>
-      </form>      
-      <button className='btn btn-danger' onClick={doSignOut}>Sign out</button>
+      </form> 
+      <button className='btn btn-danger' onClick={doSignOut}>Sign out</button>    
     </React.Fragment>
   )
 }

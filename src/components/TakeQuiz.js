@@ -7,6 +7,7 @@ function TakeQuiz(props) {
 
 
   function quizSubmissionHandler(event) {
+    event.preventDefault();
     console.log(event.target.answerOption.value)
     console.log(quiz.correctAnswer)
     if (event.target.answerOption.value == quiz.correctAnswer) {

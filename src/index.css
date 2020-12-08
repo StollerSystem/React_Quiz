@@ -10,7 +10,7 @@
   font-family: 'Carrois Gothic SC', sans-serif;
 } */
 button {
-  padding-bottom:5%;
+  padding-bottom:1%;
 }
 body #root {
   background-color: black;
@@ -18,8 +18,6 @@ body #root {
   height:100vh;
   width:100vw;
   font-family: 'Carrois Gothic SC', sans-serif;
-
-
 }
 
 .btn{
@@ -32,6 +30,7 @@ body #root {
 h1{
   font-family: 'Bungee Shade', cursive;
   color:#e63946;
+  text-shadow: 1px 1px #ffffff;
 }
 
 canvas{
@@ -43,4 +42,17 @@ canvas{
   font-family: 'Bungee Shade', cursive;
   color:rgb(5, 5, 5);
 
+}
+
+#root > nav {
+  color:turquoise;
+}
+
+
+.mainBox {
+  border: solid #ffffff;
+  border-width: 1px;
+  box-shadow: 0px 0px 5px 5px #e63946;
+  margin: 10px;
+  padding: 5px;
 }
