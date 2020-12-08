@@ -86,7 +86,7 @@ render() {
   return (
     <React.Fragment>
       {currentlyVisibleState}
-      <button onClick={this.handleClick}>{buttonText}</button>
+      <button className='btn btn-primary' onClick={this.handleClick}>{buttonText}</button>
     </React.Fragment>
   );
 }

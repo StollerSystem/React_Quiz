@@ -9,6 +9,7 @@ import firebase from './firebase';
 import {Provider} from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
