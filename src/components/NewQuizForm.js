@@ -1,28 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import  Form  from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import ReusableForm from './ReusableForm';
+
+import {useFirestore} from 'react-redux-firebase';
+
 
 function NewQuizForm(props) {
+  
+  const firestore= useFirestore();    
+
+  function addQuizToFirestore(event) {    
+    event.preventDefault();
+    props.onNewQuizCreation();    
+    return firestore.collection('quizzes').add({
+        question: event.target.question1.value, 
+        answers: [event.target.answer1.value, event.target.answer2.value, event.target.answer3.value], 
+        correctAnswer: event.target.correctAnswer1.value})        
+  }
+
+
   return (
     <div className="container">
       <h2>CREATE A QUIZ!</h2>      
       <React.Fragment>
-        <Form>
-          <Form.Group>
-            <Form.Control size="lg" type="text" placeholder="Enter a question" />
-            <br />          
-            <Form.Control size="sm" type="text" placeholder="Enter answer 1 here" />            
-            <Form.Check type="radio" aria-label="radio 1" name="correctAnswer" value="1"/>                    
-            <br />          
-            <Form.Control size="sm" type="text" placeholder="Enter answer 2 here" />
-            <Form.Check type="radio" aria-label="radio 1" name="correctAnswer" value="2"/>
-            <br />            
-            <Form.Control size="sm" type="text" placeholder="Enter answer 3 here" />
-            <Form.Check type="radio" aria-label="radio 1" name="correctAnswer" value="3"/>            
-          </Form.Group>
-          <br></br>        
-        </Form>
+        <ReusableForm formSubmissionHandler={addQuizToFirestore}
+        buttonText="Create!"
+        ></ReusableForm>        
       </React.Fragment>
     </div>
   )

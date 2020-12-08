@@ -9,3 +9,6 @@ body {
   color:whitesmoke;
   font-family: 'Carrois Gothic SC', sans-serif;
 }
+button {
+  padding-bottom:5%;
+}
