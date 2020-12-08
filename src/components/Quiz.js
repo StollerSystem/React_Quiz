@@ -5,7 +5,7 @@ function Quiz(props) {
   return (
     <React.Fragment>
       <div onClick = {() => props.whenQuizClicked(props.id)}>
-        <h3>{props.name}</h3>
+        <h3>• {props.name}</h3>
       </div>
     </React.Fragment>
   )
@@ -13,9 +13,9 @@ function Quiz(props) {
 
 Quiz.propTypes = {
   name: PropTypes.string,
-  // question: PropTypes.string,
-  // answers: PropTypes.array,
-  // correctAnswer: PropTypes.string,
+  question: PropTypes.string,
+  answers: PropTypes.array,
+  correctAnswer: PropTypes.string,
   whenQuizClicked: PropTypes.func
 }
 
