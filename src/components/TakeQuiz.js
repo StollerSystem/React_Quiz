@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import Form  from 'react-bootstrap/Form';
 
 function TakeQuiz(props) {
-  const { quiz, onClickingDelete } = props;
+  const { quiz } = props;
   
 
   function quizSubmissionHandler(event) {
     event.preventDefault();
     console.log(event.target.answerOption.value)
     console.log(quiz.correctAnswer)
-    if (event.target.answerOption.value == quiz.correctAnswer) {
+    if (event.target.answerOption.value === quiz.correctAnswer) {
       alert("Yay ur right!");
     } else {
       alert("YOU'RE WRONG!");
@@ -33,17 +33,13 @@ function TakeQuiz(props) {
         <button className="btn btn-light btn-outline" type="submit">Submit answer!</button>
       </Form>
       
-      <button className="btn btn-light btn-outline" onClick={ props.onClickingEdit }>Edit This Quiz</button>
-      {/* <button onClick={ props.onClickingDelete(quiz.id) }> Remove Quiz</button> */}
-      
-      
+      <button className="btn btn-light btn-outline" onClick={ props.onClickingEdit }>Edit This Quiz</button>     
     </React.Fragment>
   );
 }
 
 TakeQuiz.propTypes = {
-  quiz: PropTypes.object,
-  // onClickingDelete: PropTypes.func,
+  quiz: PropTypes.object,  
   onClickingEdit: PropTypes.func
 }
 

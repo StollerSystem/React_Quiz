@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import { useSelector } from 'react-redux';
-import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
 import React, { useState } from 'react';
 import firebase from "firebase/app";
 
@@ -22,7 +22,7 @@ function QuizList(props) {
           <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>Toggle My Quizzes</button>
           <hr />
           {quizzes.map((quiz) => {
-            if (quiz.user == userEmail) {
+            if (quiz.user === userEmail) {
               return <Quiz
                 whenQuizClicked={props.onQuizSelection}
                 name={quiz.name}
@@ -31,6 +31,8 @@ function QuizList(props) {
                 key={quiz.id}
                 user={quiz.user}
               />
+            } else {
+              return null;
             }
           })}
         </React.Fragment>

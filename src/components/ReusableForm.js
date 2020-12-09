@@ -33,17 +33,17 @@ function ReusableForm(props) {
       <h3>A Question</h3>
       <Form onSubmit={props.formSubmissionHandler}>
         <Form.Group>
-          <Form.Control name="name" size="lg" type="text" placeholder="Quiz name" required required defaultValue={nameDefault}/>
+          <Form.Control name="name" size="lg" type="text" placeholder="Quiz name" required defaultValue={nameDefault}/>
           <br />          
           <Form.Control name="question1" size="md" type="text" placeholder="Enter a question" required defaultValue={questionDefault} />
           <br />          
-          <Form.Control name="answer1" size="sm" type="text" placeholder="Enter answer 1 here" required  required defaultValue={answer1Default}/>            
+          <Form.Control name="answer1" size="sm" type="text" placeholder="Enter answer 1 here" required defaultValue={answer1Default}/>            
           <Form.Check type="radio" aria-label="radio 1" name="correctAnswer1" value="1" defaultChecked="checked"/>                    
           <br />          
-          <Form.Control name="answer2" size="sm" type="text" placeholder="Enter answer 2 here" required required defaultValue={answer2Default}/>
+          <Form.Control name="answer2" size="sm" type="text" placeholder="Enter answer 2 here" required defaultValue={answer2Default}/>
           <Form.Check type="radio" aria-label="radio 1" name="correctAnswer1" value="2"  />
           <br />            
-          <Form.Control name="answer3" size="sm" type="text" placeholder="Enter answer 3 here" isrequired required defaultValue={answer3Default}/>
+          <Form.Control name="answer3" size="sm" type="text" placeholder="Enter answer 3 here" required defaultValue={answer3Default}/>
           <Form.Check type="radio" aria-label="radio 1" name="correctAnswer1" value="3" />            
         </Form.Group>
         <hr></hr>

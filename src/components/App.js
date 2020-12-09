@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "./Header";
 import QuizControl from './QuizControl'
-import Confetti from './SmallConfetti'
+// import Confetti from './SmallConfetti'
 import Signin from "./Signin";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navigation from "./Nav";
+// import Navigation from "./Nav";
 
 class App extends React.Component {
 
@@ -50,6 +50,11 @@ class App extends React.Component {
     );
   }
 }
+
+
+
+
+
 
 
 export default App;

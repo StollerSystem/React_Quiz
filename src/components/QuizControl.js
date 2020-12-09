@@ -4,7 +4,6 @@ import QuizList from './QuizList';
 import TakeQuiz from './TakeQuiz';
 import EditQuizForm from './EditQuizForm';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types";
 import * as a from './../actions';
 import { withFirestore, isLoaded } from 'react-redux-firebase';
 
