@@ -10,6 +10,7 @@ function QuizList(props) {
 
   useFirestoreConnect([{ collection: 'quizzes' }]);
   const quizzes = useSelector(state => state.firestore.ordered.quizzes);
+
   const [myQuizzes, setHidden] = useState(true);
   const userEmail = firebase.auth().currentUser.email;  
 
