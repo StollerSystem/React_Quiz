@@ -11,7 +11,7 @@ function QuizList(props) {
   useFirestoreConnect([{ collection: 'quizzes' }]);
   const quizzes = useSelector(state => state.firestore.ordered.quizzes);
 
-  const [myQuizzes, setHidden] = useState(true);
+  const [myQuizzes, setHidden] = useState(false);
   const userEmail = firebase.auth().currentUser.email;  
 
   if (isLoaded(quizzes)) {
@@ -19,7 +19,7 @@ function QuizList(props) {
       return (
         <React.Fragment>
           <h1>MY QUIZZES</h1>         
-          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>Toggle My Quizzes</button>
+          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>See All Quizzes</button>
           <hr />
           {quizzes.map((quiz) => {
             if (quiz.user === userEmail) {
@@ -41,7 +41,7 @@ function QuizList(props) {
       return (
         <React.Fragment>
           <h1>ALL QUIZZES</h1>
-          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>Toggle My Quizzes</button>
+          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>See My Quizzes</button>
           <hr />
           {quizzes.map((quiz) => {
             return <Quiz
