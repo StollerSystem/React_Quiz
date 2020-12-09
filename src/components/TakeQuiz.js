@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Form from 'react-bootstrap/Form';
 import firebase from "firebase/app";
+import {useFirestore} from "react-redux-firebase";
 
 function TakeQuiz(props) {
   const { quiz } = props;
-
-
+  const firestore = useFirestore();
+  const userEmail = firebase.auth().currentUser.email;
 
   function quizSubmissionHandler(event) {
     event.preventDefault();
@@ -14,12 +15,27 @@ function TakeQuiz(props) {
     console.log(quiz.correctAnswer)
     if (event.target.answerOption.value === quiz.correctAnswer) {
       alert("Yay ur right!");
+
+      return firestore.collection('answers').add({
+        user: userEmail,
+        name: quiz.name,
+        id: quiz.id,
+        correct: true
+      });
+      
     } else {
       alert("YOU'RE WRONG!");
+
+      return firestore.collection('answers').add({
+        user: userEmail,
+        name: quiz.name,
+        id: quiz.id,
+        correct: false
+      });
     }
   }
 
-  const userEmail = firebase.auth().currentUser.email;
+  
   let button = null;
   let prompt = null;
 
