@@ -30,6 +30,8 @@ function QuizList(props) {
                 id={quiz.id}
                 key={quiz.id}
                 user={quiz.user}
+                timesTaken = {quiz.timesTaken}
+                timesPassed = {quiz.timesPassed}
               />
             } else {
               return null;
@@ -52,8 +54,11 @@ function QuizList(props) {
               id={quiz.id}
               key={quiz.id}
               user={quiz.user}
+              timesTaken = {quiz.timesTaken}
+              timesPassed = {quiz.timesPassed}
             />
           })}
+          <hr />
         </React.Fragment>
       );
     }

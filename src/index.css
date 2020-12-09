@@ -48,6 +48,13 @@ canvas{
   color:turquoise;
 }
 
+.failure{
+  color:tomato;
+}
+
+.passed{
+  color:greenyellow;
+}
 
 .mainBox {
   border: solid #ffffff;
@@ -57,4 +64,9 @@ canvas{
   margin-right:4%;
   margin-top:6%;
   padding: 5px;
+}
+
+hr {
+  border-color: solid rgb(232, 232, 232);
+  border-width: 1px;
 }
