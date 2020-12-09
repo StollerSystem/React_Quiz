@@ -32,6 +32,7 @@ function QuizList(props) {
                 user={quiz.user}
                 timesTaken = {quiz.timesTaken}
                 timesPassed = {quiz.timesPassed}
+                myQuizzes = {myQuizzes}
               />
             } else {
               return null;
@@ -56,6 +57,7 @@ function QuizList(props) {
               user={quiz.user}
               timesTaken = {quiz.timesTaken}
               timesPassed = {quiz.timesPassed}
+              myQuizzes = {myQuizzes}
             />
           })}
           <hr />

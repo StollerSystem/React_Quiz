@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Quiz(props) {
+
+function Quiz(props) {  
+  if (props.myQuizzes){
   return (
     <React.Fragment>
+      
       <div onClick = {() => props.whenQuizClicked(props.id)}>
         <h2>• {props.name}</h2>
         <h5>By {props.user}</h5>
@@ -11,6 +14,12 @@ function Quiz(props) {
       </div>
     </React.Fragment>
   )
+} else { return(
+  <div onClick = {() => props.whenQuizClicked(props.id)}>
+  <h2>• {props.name}</h2>
+  <h5>By {props.user}</h5>
+</div>)
+}
 }
 
 Quiz.propTypes = {
@@ -21,7 +30,8 @@ Quiz.propTypes = {
   correctAnswer: PropTypes.string,
   whenQuizClicked: PropTypes.func,
   timesTaken: PropTypes.number,
-  timesPassed: PropTypes.number
+  timesPassed: PropTypes.number,
+  myQuizzes: PropTypes.bool, 
 }
 
 export default Quiz;
