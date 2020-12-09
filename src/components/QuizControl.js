@@ -51,7 +51,9 @@ class QuizControl extends React.Component {
         question: quiz.get('question'),
         answers: quiz.get('answers'),
         correctAnswer: quiz.get('correctAnswer'),
-        id: quiz.id
+        id: quiz.id,
+        timesTaken: quiz.get('timesTaken'),
+        timesPassed: quiz.get('timesPassed')        
       }
       this.setState({
         selectedQuiz: firestoreQuiz

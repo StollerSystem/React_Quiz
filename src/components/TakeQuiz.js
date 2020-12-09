@@ -5,27 +5,39 @@ import firebase from "firebase/app";
 import {useFirestore} from "react-redux-firebase";
 
 function TakeQuiz(props) {
+
   const { quiz } = props;
   const firestore = useFirestore();
   const userEmail = firebase.auth().currentUser.email;
+  let button = null;
+  let prompt = null;
 
+  function updateTimesTaken() {
+    let timesTaken = quiz.timesTaken += 1;    
+    return firestore.update({collection: 'quizzes', doc:quiz.id},{timesTaken: timesTaken})
+  }
+
+  function updateTimesPassed() {
+    let timesPassed = quiz.timesPassed += 1;    
+    return firestore.update({collection: 'quizzes', doc:quiz.id},{timesPassed: timesPassed})
+  }
+  
   function quizSubmissionHandler(event) {
     event.preventDefault();
+    updateTimesTaken();
     console.log(event.target.answerOption.value)
     console.log(quiz.correctAnswer)
     if (event.target.answerOption.value === quiz.correctAnswer) {
       alert("Yay ur right!");
-
+      updateTimesPassed();
       return firestore.collection('answers').add({
         user: userEmail,
         name: quiz.name,
         id: quiz.id,
         correct: true
-      });
-      
+      });      
     } else {
       alert("YOU'RE WRONG!");
-
       return firestore.collection('answers').add({
         user: userEmail,
         name: quiz.name,
@@ -33,11 +45,7 @@ function TakeQuiz(props) {
         correct: false
       });
     }
-  }
-
-  
-  let button = null;
-  let prompt = null;
+  }  
 
   if (quiz.user === userEmail) {
     button = <button className="btn btn-light btn-outline" onClick={props.onClickingEdit}>Edit This Quiz</button>
@@ -70,4 +78,4 @@ TakeQuiz.propTypes = {
   onClickingEdit: PropTypes.func
 }
 
-export default TakeQuiz;
+export default TakeQuiz

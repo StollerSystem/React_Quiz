@@ -35,6 +35,7 @@ function QuizList(props) {
               return null;
             }
           })}
+          <hr />
         </React.Fragment>
       )
     } else {
