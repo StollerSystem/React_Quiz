@@ -18,7 +18,7 @@ class QuizControl extends React.Component {
 
     this.state = {
       selectedQuiz: null,
-      editing: false
+      editing: false      
     };
   }
 

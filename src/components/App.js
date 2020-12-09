@@ -6,20 +6,38 @@ import Signin from "./Signin";
 import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
 import Navigation from "./Nav";
 
-function App() {
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    }
+  }
+
+  handleSetUser = (user) => {    
+    this.setState({user: user})
+  }
+
+
+  render() {
+
   return (
     <React.Fragment>
       <Router>
         <Switch>
         <Route path="/signin">
-          <Navigation />
+          {/* <Navigation /> */}
           <Header />
           <div className="container mainBox">
-            <Signin />            
+            <Signin 
+            user={this.state.user}
+            handleSetUser={this.handleSetUser}
+            />            
           </div>
         </Route>
         <Route path="/">
-          <Navigation />
+          {/* <Navigation /> */}
           <Header />
           <div className="container mainBox">
             <QuizControl />
@@ -30,5 +48,7 @@ function App() {
     </React.Fragment>
   );
 }
+}
+
 
 export default App;

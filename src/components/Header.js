@@ -6,9 +6,9 @@ function Header () {
     <div className="center-align title">
       <React.Fragment>
         <h1>Quiz Party</h1>
-        <h3>An epic site to build your own quizzes!</h3>        
-        <Link to="/">Home</Link>        
-        <Link to="/signin">Sign In</Link>      
+        <h5>An epic site to build your own quizzes!</h5>        
+        <Link className='btn btn-light' Link to="/">Home</Link>        
+        <Link className='btn btn-success' Link to="/signin">Sign In</Link>      
       </React.Fragment>
     </div>
   );

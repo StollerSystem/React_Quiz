@@ -10,8 +10,8 @@ function Navigation() {
       <Router>
         <Navbar bg="light" sticky="top">
           <Navbar.Brand className='displayfont' href="/">Quiz Party</Navbar.Brand>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/signin">Sign In</Nav.Link>
+          <Link to="/">Home</Link>
+          <Link to="/signin">Sign In</ Link>
         </ Navbar>
       </Router>
     </ React.Fragment>
