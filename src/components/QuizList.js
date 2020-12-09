@@ -1,33 +1,45 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Quiz from './Quiz';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import React, { useState } from 'react';
 
 
 function QuizList(props) {
 
   useFirestoreConnect([{ collection: 'quizzes' }]);
 
-  const quizzes = useSelector(state => state.firestore.ordered.quizzes);
-  
-  // console.table(quizzes);
+  const quizzes = useSelector(state => state.firestore.ordered.quizzes);  
 
-  if (isLoaded(quizzes)) {
-    return (
-      <React.Fragment>
-        <hr />
-        {quizzes.map((quiz) => {
-          return <Quiz
-            whenQuizClicked={props.onQuizSelection}
-            name={quiz.name}
-            question={quiz.question}
-            id={quiz.id}
-            key={quiz.id}
-          />
-        })}
-      </React.Fragment>
-    );
+  const [myQuizzes, setHidden] = useState(true);
+
+
+  if (isLoaded(quizzes)) {    
+    if (myQuizzes) {
+      return (
+        <React.Fragment>
+          <h1>MY QUIZZES</h1>
+          <button onClick={() => setHidden(!myQuizzes)}>Hide/Show</button>
+        </React.Fragment>
+      )
+    } else {
+      return (      
+        <React.Fragment>
+          <button onClick={() => setHidden(!myQuizzes)}>Hide/Show</button>
+          <hr />
+          {quizzes.map((quiz) => {
+            return <Quiz
+              whenQuizClicked={props.onQuizSelection}
+              name={quiz.name}
+              question={quiz.question}
+              id={quiz.id}
+              key={quiz.id}
+              user={quiz.user}
+            />
+          })}
+        </React.Fragment>
+      );
+    }
   } else {
     return (
       <React.Fragment>

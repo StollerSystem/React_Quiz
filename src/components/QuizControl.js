@@ -47,6 +47,7 @@ class QuizControl extends React.Component {
     // console.log("ID:" + id);
     this.props.firestore.get({ collection: 'quizzes', doc: id }).then((quiz) => {
       const firestoreQuiz = {
+        user: quiz.get('user'),
         name: quiz.get('name'),
         question: quiz.get('question'),
         answers: quiz.get('answers'),
