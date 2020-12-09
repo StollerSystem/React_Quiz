@@ -20,7 +20,6 @@ function Signin(props) {
     );
   };
 
-
   function doSignIn(event) {
     event.preventDefault();
     props.handleSetUser(event.target.signinEmail.value)

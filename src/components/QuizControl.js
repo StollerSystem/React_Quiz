@@ -12,10 +12,6 @@ class QuizControl extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.props.firebase.auth().onAuthStateChanged(function(user) {
-    //   this.setState({ user: user });
-    // });
-
     this.state = {
       selectedQuiz: null,
       editing: false      
