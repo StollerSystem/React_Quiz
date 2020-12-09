@@ -4,7 +4,7 @@ import Form  from 'react-bootstrap/Form';
 
 function TakeQuiz(props) {
   const { quiz, onClickingDelete } = props;
-
+  
 
   function quizSubmissionHandler(event) {
     event.preventDefault();

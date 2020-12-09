@@ -44,7 +44,7 @@ class QuizControl extends React.Component {
   }
 
   handleChangingSelectedQuiz = (id) => {
-    console.log("ID:" + id);
+    // console.log("ID:" + id);
     this.props.firestore.get({ collection: 'quizzes', doc: id }).then((quiz) => {
       const firestoreQuiz = {
         name: quiz.get('name'),

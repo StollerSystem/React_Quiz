@@ -38,6 +38,8 @@ class App extends React.Component {
         </Route>
         <Route path="/">
           {/* <Navigation /> */}
+          {/* <Confetti /> */}
+          
           <Header />
           <div className="container mainBox">
             <QuizControl />

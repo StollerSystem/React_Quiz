@@ -9,8 +9,8 @@ function EditQuizForm(props){
 
   function handleEditQuizSubmit(event){
     event.preventDefault();
-  props.onEditQuiz() 
-  const updatedQuizProperties = {
+    props.onEditQuiz() 
+    const updatedQuizProperties = {
     name:event.target.name.value,
     question: event.target.question1.value,
     answers: [event.target.answer1.value,event.target.answer2.value,event.target.answer3.value],
