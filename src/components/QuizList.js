@@ -3,29 +3,42 @@ import Quiz from './Quiz';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import React, { useState } from 'react';
+import firebase from "firebase/app";
 
 
 function QuizList(props) {
 
   useFirestoreConnect([{ collection: 'quizzes' }]);
-
-  const quizzes = useSelector(state => state.firestore.ordered.quizzes);  
-
+  const quizzes = useSelector(state => state.firestore.ordered.quizzes);
   const [myQuizzes, setHidden] = useState(true);
+  const userEmail = firebase.auth().currentUser.email;  
 
-
-  if (isLoaded(quizzes)) {    
+  if (isLoaded(quizzes)) {
     if (myQuizzes) {
       return (
         <React.Fragment>
-          <h1>MY QUIZZES</h1>
-          <button onClick={() => setHidden(!myQuizzes)}>Hide/Show</button>
+          <h1>MY QUIZZES</h1>         
+          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>Toggle My Quizzes</button>
+          <hr />
+          {quizzes.map((quiz) => {
+            if (quiz.user == userEmail) {
+              return <Quiz
+                whenQuizClicked={props.onQuizSelection}
+                name={quiz.name}
+                question={quiz.question}
+                id={quiz.id}
+                key={quiz.id}
+                user={quiz.user}
+              />
+            }
+          })}
         </React.Fragment>
       )
     } else {
-      return (      
+      return (
         <React.Fragment>
-          <button onClick={() => setHidden(!myQuizzes)}>Hide/Show</button>
+          <h1>ALL QUIZZES</h1>
+          <button className='btn btn-light' onClick={() => setHidden(!myQuizzes)}>Toggle My Quizzes</button>
           <hr />
           {quizzes.map((quiz) => {
             return <Quiz

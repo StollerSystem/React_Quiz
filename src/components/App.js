@@ -3,7 +3,7 @@ import Header from "./Header";
 import QuizControl from './QuizControl'
 import Confetti from './SmallConfetti'
 import Signin from "./Signin";
-import {BrowserRouter as Router,Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from "./Nav";
 
 class App extends React.Component {
@@ -15,41 +15,40 @@ class App extends React.Component {
     }
   }
 
-  handleSetUser = (user) => {    
-    this.setState({user: user})
+  handleSetUser = (user) => {
+    this.setState({ user: user })
   }
 
 
   render() {
 
-  return (
-    <React.Fragment>
-      <Router>
-        <Switch>
-        <Route path="/signin">
-          {/* <Navigation /> */}
-          <Header />
-          <div className="container mainBox">
-            <Signin 
-            user={this.state.user}
-            handleSetUser={this.handleSetUser}
-            />            
-          </div>
-        </Route>
-        <Route path="/">
-          {/* <Navigation /> */}
-          {/* <Confetti /> */}
-          
-          <Header />
-          <div className="container mainBox">
-            <QuizControl />
-          </div>
-        </Route>
-        </Switch>
-      </Router>
-    </React.Fragment>
-  );
-}
+    return (
+      <React.Fragment>
+        <Router>
+          <Switch>
+            <Route path="/signin">
+              {/* <Navigation /> */}
+              <Header />
+              <div className="container mainBox">
+                <Signin
+                  user={this.state.user}
+                  handleSetUser={this.handleSetUser}
+                />
+              </div>
+            </Route>
+            <Route path="/">
+              {/* <Navigation /> */}
+              {/* <Confetti /> */}
+              <Header />
+              <div className="container mainBox">
+                <QuizControl />
+              </div>
+            </Route>
+          </Switch>
+        </Router>
+      </React.Fragment>
+    );
+  }
 }
 
 
